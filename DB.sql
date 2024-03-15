@@ -12,7 +12,7 @@ CREATE TABLE article(
 );
 
 # member 테이블 생성
-CREATE TABLE `member`(
+CREATE TABLE `member`(https://github.com/yunlinIT/2024_spring_test_yunlin_1.gitㅡ
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME NOT NULL,
     updateDate DATETIME NOT NULL,
@@ -104,7 +104,7 @@ CREATE TABLE board(
     id INT(10) UNSIGNED NOT NULL PRIMARY KEY AUTO_INCREMENT,
     regDate DATETIME NOT NULL,
     updateDate DATETIME NOT NULL,
-    `code` CHAR(50) NOT NULL UNIQUE COMMENT 'notice(공지사항), free(자유), QnA(질의응답) ...',
+    `code` CHAR(50) NOT NULL UNIQUE COMMENT 'notice(공지사항), free(자유게시판), QnA(질의응답) ...',
     `name` CHAR(20) NOT NULL UNIQUE COMMENT '게시판 이름',
     delStatus TINYINT(1) UNSIGNED NOT NULL DEFAULT 0 COMMENT '삭제 여부 (0=삭제 전, 1=삭제 후)',
     delDate DATETIME COMMENT '삭제 날짜'
@@ -121,13 +121,13 @@ INSERT INTO board
 SET regDate = NOW(),
 updateDate = NOW(),
 `code` = 'FREE',
-`name` = '자유';
+`name` = '자유게시판';
 
 INSERT INTO board
 SET regDate = NOW(),
 updateDate = NOW(),
 `code` = 'QnA',
-`name` = '질의응답';
+`name` = '질문게시판';
 
 ALTER TABLE article ADD COLUMN boardId INT(10) UNSIGNED NOT NULL AFTER `memberId`;
 
@@ -335,11 +335,19 @@ SELECT * FROM article;
 
 SELECT * FROM `member`;
 
+DESC   `member`;
+
 SELECT * FROM `board`;
 
 SELECT * FROM reactionPoint;
 
 SELECT * FROM `reply`;
+
+
+UPDATE `member`
+SET delStatus = 1,
+delDate = NOW()
+WHERE loginId = 'test1';
 
 
 
